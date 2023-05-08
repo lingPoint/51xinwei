@@ -27,5 +27,5 @@
 
 ## 许可证
 
-本脚本基于AGPL-3.0 license许可证发布。详见[LICENSE](./LICENSE)文件。
+本脚本基于GPL-3.0 license许可证发布。详见[LICENSE](./LICENSE)文件。
 
