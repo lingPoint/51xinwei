@@ -22,8 +22,10 @@
 
 <img src="https://github.com/lingPoint/AutoNovelReader/blob/main/img.png" alt="Sponsor" width="600"/>
 
-
 感谢您的支持！
+
+## 免责声明
+本脚本仅用于学习和测试，作者不对其产生的任何后果负责。请在使用本脚本前仔细阅读上述注意事项，并自行承担使用本脚本的风险。如有违反相关法律法规或侵犯他人权益的行为，责任由用户自行承担。
 
 ## 许可证
 
