@@ -32,9 +32,7 @@ setInterval(function () {
 function main() {
     var activeMenutrim = document.querySelector('#menu_tarr_content .courseware_menu_item.pull-left.ng-scope.active');
 
-    // 检查元素是否存在并且innerText属性是否有值
     if (activeMenutrim && activeMenutrim.innerText.trim() !== "") {
-        // 存在且innerText有值
         console.log("老版界面");
         const activeMenu = document.querySelector('#menu_tarr_content .courseware_menu_item.pull-left.ng-scope.active').innerText;
         if (activeMenu === ' 文档' || activeMenu === ' 作业'|| activeMenu === ' 问卷') {
@@ -48,7 +46,6 @@ function main() {
             leftElements.forEach(function (element) {
                 element.click();
             });
-            // 不存在或innerText为空
             console.log("新版界面");
         }
 
