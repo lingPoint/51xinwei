@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         芯位教育全自动刷网课
+// @name         芯位教育全自动刷网课-后台静音播放
 // @namespace    https://github.com/lingPoint/51xinwei
-// @version      2.0.2
-// @description  适配新版UI；主要功能：芯位教育自动播放下一课，跳过作业、文档、问卷；专注于帮助大学生从网课中释放出来 让自己的时间把握在自己的手中。
+// @version      2.1.1
+// @description  适配后台播放和默认静音;适配新版UI；主要功能：芯位教育自动播放下一课，跳过作业、文档、问卷；专注于帮助大学生从网课中释放出来 让自己的时间把握在自己的手中。
 // @author       Zerox
 // @match        *://*.51xinwei.com/*
 // @icon         *://*.51xinwei.com/*
@@ -10,6 +10,27 @@
 // @run-at document-end
 // @license GPL-3.0 license
 // ==/UserScript==
+
+const createControlPanel = () => {
+    const controlPanel = document.createElement('div');
+    controlPanel.id = 'controlPanel';
+    controlPanel.style.position = 'fixed';
+    controlPanel.style.zIndex = '1000';
+    controlPanel.style.padding = '10px';
+    const label = document.createElement('label');
+    label.textContent = '吉利校招内推码：NTAYzwl';
+    controlPanel.appendChild(label);
+    return controlPanel;
+};
+
+const placeControlPanel = (panel) => {
+    const windowHeight = window.innerHeight;
+    panel.style.top = `${windowHeight - panel.offsetHeight - 20}px`;
+};
+
+const controlPanel = createControlPanel();
+document.body.appendChild(controlPanel);
+placeControlPanel(controlPanel);
 
 (function () {
     'use strict';
@@ -23,10 +44,12 @@
 
 function handler(mutationRecordList) {
     main()
+    mute()
 }
 
 setInterval(function () {
     main()
+    mute()
 }, 1000);
 
 function main() {
@@ -35,7 +58,7 @@ function main() {
     if (activeMenutrim && activeMenutrim.innerText.trim() !== "") {
         console.log("老版界面");
         const activeMenu = document.querySelector('#menu_tarr_content .courseware_menu_item.pull-left.ng-scope.active').innerText;
-        if (activeMenu === ' 文档' || activeMenu === ' 作业'|| activeMenu === ' 问卷') {
+        if (activeMenu === ' 文档' || activeMenu === ' 作业' || activeMenu === ' 问卷') {
             jumpToNext();
         } else if (document.querySelector('.layui-layer-title') !== null) {
             document.querySelectorAll('.layui-layer-btn0')[0].click();
@@ -60,5 +83,12 @@ function jumpToNext() {
             courseChapterItems[i + 1].children[1].click();
             break;
         }
+    }
+}
+
+function mute() {
+    const mButt = document.querySelector('.vjs-mute-control');
+    if (mButt.getAttribute('title') === '静音') {
+        mButt.click();
     }
 }
